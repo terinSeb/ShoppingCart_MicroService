@@ -1,4 +1,6 @@
 
+using AutoMapper;
+using Mango.Services.ProductAPI;
 using Mango.Services.ProductAPI.DbContexts;
 using Microsoft.EntityFrameworkCore; 
 
@@ -23,6 +25,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+IMapper mapper = MappingConfig.RegisterMaps().CreateMapper();
+builder.Services.AddSingleton(mapper);
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 app.UseHttpsRedirection();
 
